@@ -19,11 +19,8 @@ from dl.bilstm import BiLSTM
 from dl.bilstm_crf import BiLSTM_CRF
 from dl.gru import GRU
 from dl.rnn import RNN
-from dl.s2s import SeqToSeq
-from dl.s2s_dotproduct_attn import SeqToSeq_DotProductAttn
 from dl.self_attention import Self_Attention
 from dl.self_attention_multihead import Self_Attention_Multi_Head
-from dl.transformer import Transformer
 from dl.mlp import MLP
 from dl.cnn import CNN
 from dl.bert_mlp import Bert_MLP
@@ -32,8 +29,6 @@ from dl.bert_bilstm import Bert_BiLSTM
 from dl.bert_cnn import Bert_CNN
 from dl.bert_gru import Bert_GRU
 from dl.bert_rnn import Bert_RNN
-from dl.bert_s2s import Bert_S2S
-from dl.bert_s2s_attn import Bert_S2S_Attn
 from dl.bert_self_attn import Bert_Self_Attn
 from dl.bert_self_attn_multihead import Bert_Self_Attn_Multihead
 
@@ -50,17 +45,12 @@ dl_model_dict = {
     'CNN': CNN,
     'Self_Attn': Self_Attention,
     'Self_Attn_Multi_Head': Self_Attention_Multi_Head,
-    'SeqToSeq': SeqToSeq,
-    'SeqToSeq_DotProductAttn': SeqToSeq_DotProductAttn,
-    'Transformer': Transformer,
     'Bert_MLP': Bert_MLP,
     'Bert_LSTM': Bert_LSTM,
     'Bert_BiLSTM': Bert_BiLSTM,
     'Bert_CNN': Bert_CNN,
     'Bert_GRU': Bert_GRU,
     'Bert_RNN': Bert_RNN,
-    'Bert_S2S': Bert_S2S,
-    'Bert_S2S_Attn': Bert_S2S_Attn,
     'Bert_Self_Attn': Bert_Self_Attn,
     'Bert_Self_Attn_Multihead': Bert_Self_Attn_Multihead
 }
