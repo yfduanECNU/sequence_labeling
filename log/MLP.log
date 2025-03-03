@@ -1,0 +1,75 @@
+config:  {'data_name': 'cmed', 'data_root': './Datasets/cmed/', 'inputdata_file_name': 'data.input', 'outputdata_file_name': 'data.output', 'dict_file_name': 'vocab.json', 'tags_file_name': 'tags.json', 'model_save_name': 'model.ckpt', 'n_folds': 0, 'split_rate': 0.7, 'cover_rate': 1, 'min_count': 0, 'shuffle': 1, 'feature': 'norm', 'pad_token': '[PAD]', 'layer1_dim': 128, 'layer2_dim': 128, 'layer3_dim': 128, 'layer4_dim': 128, 'model_name': 'MLP', 'embedding_dim': 448, 'hidden_dim': 128, 'num_layers': 3, 'bidirectional': 'True', 'dropout_rate': 0.3, 'num_epochs': 10, 'batch_size': 32, 'learning_rate': 0.001, 'criterion_name': 'NLLLoss', 'optimizer_name': 'Adam'}
+MLP(
+  (criterion): NLLLoss()
+  (word_embeddings): Embedding(1761, 448, padding_idx=0)
+  (lstm): LSTM(448, 128, num_layers=3, batch_first=True, bidirectional=True)
+  (output_to_tag): Linear(in_features=256, out_features=17, bias=True)
+  (dropout): Dropout(p=0.3, inplace=False)
+  (layer1): Sequential(
+    (0): Linear(in_features=448, out_features=128, bias=True)
+    (1): ReLU()
+    (2): Dropout(p=0.3, inplace=False)
+  )
+  (layer5): Sequential(
+    (0): Linear(in_features=128, out_features=17, bias=True)
+  )
+)
+Running MLP model. Training...
+Done Epoch1. Eval_Loss=0.009308679926497782
+Done Epoch2. Eval_Loss=0.005556003660963998
+Done Epoch3. Eval_Loss=0.004426887062589793
+Done Epoch4. Eval_Loss=0.004922440701588163
+Done Epoch5. Eval_Loss=0.0044040988889362176
+Done Epoch6. Eval_Loss=0.004766907307386957
+Done Epoch7. Eval_Loss=0.004773485640777823
+Done Epoch8. Eval_Loss=0.004939318343031508
+Done Epoch9. Eval_Loss=0.0045767848457701965
+Done Epoch10. Eval_Loss=0.004472877175941959
+[0.43108233117483813, 0.4669849772912542, 0.4261106074342701, 0.43639595600488834, 0.46145374449339205, 0.4248124510133244, 0.44282912195684787, 0.4520456069751844, 0.44697145509398933, 0.4736117485084901]
+Running MLP model. Testing data in folder: ./Datasets/cmed/0/
+              precision    recall  f1-score   support
+
+        BODY       0.45      0.51      0.48      1594
+       CHECK       0.48      0.48      0.48      1480
+     DISEASE       0.00      0.00      0.00       116
+       SIGNS       0.45      0.51      0.48      1222
+   TREATMENT       0.03      0.01      0.01       125
+
+   micro avg       0.46      0.47      0.46      4537
+   macro avg       0.28      0.30      0.29      4537
+weighted avg       0.44      0.47      0.45      4537
+
+                 precision       recall     f1-score      support
+      I-BODY        0.7180       0.7358       0.7268         3021
+   B-DISEASE        0.8750       0.0603       0.1129          116
+ B-TREATMENT        0.5429       0.1520       0.2375          125
+   I-DISEASE        0.3263       0.0789       0.1270          393
+     B-SIGNS        0.7023       0.8011       0.7485         1222
+     I-CHECK        0.6842       0.7458       0.7136         3198
+ I-TREATMENT        0.6865       0.2288       0.3432          555
+     B-CHECK        0.6099       0.6074       0.6087         1480
+     I-SIGNS        0.7827       0.5965       0.6770         1353
+           O        0.9117       0.9276       0.9196        25364
+      B-BODY        0.6445       0.7246       0.6822         1594
+   avg/total        0.8330       0.8370       0.8304        38421
+
+Confusion Matrix:
+                   I-BODY    B-DISEASE  B-TREATMENT    I-DISEASE      B-SIGNS      I-CHECK  I-TREATMENT      B-CHECK      I-SIGNS            O       B-BODY 
+      I-BODY         2223            0            0           16           30          111            1           20           26          489          104 
+   B-DISEASE            4            7            0            7            3           11            7            4            0           45           28 
+ B-TREATMENT            1            0           19            4           10            2            9            1            1           72            6 
+   I-DISEASE          105            0            0           31            8           20            2           39           13          156           19 
+     B-SIGNS            6            0            0            0          979            5            0           13           13          109           97 
+     I-CHECK          132            0            1            4           16         2385            2          116            0          502           40 
+ I-TREATMENT           23            1            8            8           10           40          127           14           10          306            5 
+     B-CHECK           50            0            0            1           10          135            1          899            6          249          129 
+     I-SIGNS           10            0            0            0           91          215            1           59          807          133           37 
+           O          399            0            7           21          191          553           31          305          144        23528          172 
+      B-BODY          143            0            0            3           46            9            4            4           11          219         1155 
+train_losses: [0.04120185380450851, 0.005556811298785349, 0.0045202704977290896, 0.004189043250792196, 0.0041517748318955485, 0.004152402382764857, 0.004184944188245669, 0.004050686936747579, 0.004068701908179407, 0.004069868344891521]
+, eval_losses: [0.009308679926497782, 0.005556003660963998, 0.004426887062589793, 0.004922440701588163, 0.0044040988889362176, 0.004766907307386957, 0.004773485640777823, 0.004939318343031508, 0.0045767848457701965, 0.004472877175941959]
+, eval_f1_scores: [0.43108233117483813, 0.4669849772912542, 0.4261106074342701, 0.43639595600488834, 0.46145374449339205, 0.4248124510133244, 0.44282912195684787, 0.4520456069751844, 0.44697145509398933, 0.4736117485084901]
+, test_f1_score: 0.4634199134199134
+
+Namespace(phase='cmed.dl.mlp.norm') takes 60 seconds.
+Done main!
